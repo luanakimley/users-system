@@ -2,5 +2,5 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "user_management";
+$database = "users_system";
 $conn = mysqli_connect($hostname, $username, $password, $database);
