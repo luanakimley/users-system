@@ -14,4 +14,4 @@
     <title>User Management System</title>
 </head>
 
-<body>
+<body class="bg-light">

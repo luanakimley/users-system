@@ -1,5 +1,5 @@
-<footer class="fixed-bottom">
-    <p class="text-center text-secondary mt-5">&copy; Luana Kimley & Niall O'Reilly 2023</p>
+<footer class="bg-light fixed-bottom">
+    <p class="text-center">&copy; Users System 2023</p>
 </footer>
 </main>
 </body>
