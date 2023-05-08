@@ -1,9 +1,5 @@
 <?php
-// initialise session
-session_start();
-
-// PHP charset
-ini_set('default_charset', 'UTF-8');
+include("start_session.php");
 
 // database connection
 include("db_connect.php");
@@ -32,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["username"])) {
-        $usernameErr = "Username is required!";
+        $usernameErr = "Full name is required!";
     } else {
         $username = test_input($_POST["username"]);
     }
@@ -63,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($imgFile)) {
             $profilePic = "";
         } else {
-            $upload_dir = 'image_uploads/'; // upload directory
+            $upload_dir = '../image_uploads/'; // upload directory
 
             $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
             // valid image extensions
