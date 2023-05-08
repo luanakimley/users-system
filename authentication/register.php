@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo $emailErr . "&nbsp;" . $usernameErr . "&nbsp;" . $passwordErr . "&nbsp;" . $dobErr . "&nbsp;" . $picErr . "&nbsp;";
             ?>
         </div>
-<?php } else {
+        <?php } else {
 
 
         $exists = true;
@@ -132,10 +132,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($conn, $query);
 
         if (!$result) {
-            echo mysqli_error($conn);
+            $dbErr = "User with that e-mail already exists!";
+        ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $dbErr;
+                ?>
+            </div>
+<?php
         }
 
-        header('Location: login.php');
+        header('Location: login_form.php');
     }
 }
 ?>
