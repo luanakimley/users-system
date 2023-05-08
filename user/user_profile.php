@@ -40,6 +40,10 @@ if ($_SESSION['login'] == true) {
             </div>
         </div>
         <a href="edit_user_form.php?userId=<?php echo $userId ?>" class="btn btn-primary mt-5"><i class="bi bi-pencil-square"></i>&ensp;Edit profile</a>
+        
+        <?php if ($_SESSION['userType'] == 'manager') { ?>
+        <a href="users_list.php" class="btn btn-primary mt-5"><i class="bi bi-pencil-square"></i>&ensp;Back to User list</a>    
+        <?php } ?>
     </main>
 <?php
     include('../includes/footer.php');
