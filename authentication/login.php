@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Location: ../user/user_profile.php');
                 }
 
-                if ($_SESSION['userType'] == 'admin') {
+                if ($_SESSION['userType'] == 'manager') {
                     header('Location: ../user/users_list.php');
                 }
             }
