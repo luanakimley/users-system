@@ -6,7 +6,7 @@ ini_set('default_charset', 'UTF-8');
 // if ($_SESSION['login'] == true) 
 // {
     include("db_connect.php");
-    $query = "DELETE FROM users WHERE user_id = $_GET[user_id]";
+    $query = "UPDATE users SET is_active = $_GET[is_active] WHERE user_id = $_GET[user_id]";
     mysqli_query($conn, $query);
 
     mysqli_close($conn);
