@@ -2,7 +2,7 @@
 include("start_session.php");
 
 // database connection
-include("db_connect.php");
+include("../db_connect.php");
 
 // initialise variables
 $email = $username = $password = $dob = $profilePic = "";

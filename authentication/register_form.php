@@ -1,6 +1,6 @@
 <?php
 include('register.php');
-include('includes/header.php');
+include('../includes/header.php');
 ?>
 
 <main class="d-flex justify-content-center align-items-center vh-100 flex-column">
@@ -35,5 +35,5 @@ include('includes/header.php');
     </div>
 
     <?php
-    include('includes/footer.php');
+    include('../includes/footer.php');
     ?>
