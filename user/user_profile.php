@@ -39,14 +39,20 @@ if ($_SESSION['login'] == true) {
                 </ul>
             </div>
         </div>
-        <a href="edit_user_form.php?userId=<?php echo $userId ?>" class="btn btn-primary mt-5"><i class="bi bi-pencil-square"></i>&ensp;Edit profile</a>
-        
-        <?php if ($_SESSION['userType'] == 'manager') { ?>
-        <a href="users_list.php" class="btn btn-primary mt-5"><i class="bi bi-pencil-square"></i>&ensp;Back to User list</a>    
-        <?php } ?>
+        <div class="d-flex align-items-center justify-content-center mt-5 gap-2">
+            <a href="edit_user_form.php?userId=<?php echo $userId ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i>&ensp;Edit profile</a>
+            <?php if ($_SESSION['userType'] == 'manager') { ?>
+                <a href="users_list.php" class="btn btn-primary">Back to User list</a>
+            <?php } else { ?>
+                <form action="../authentication/logout.php" method="post">
+                    <input class="btn btn-primary" type="submit" value="Sign Out">
+                </form> <?php } ?>
+        </div>
     </main>
 <?php
     include('../includes/footer.php');
+
+    mysqli_close($conn);
 } else {
     header('Location: ../authentication/login_form.php');
 }

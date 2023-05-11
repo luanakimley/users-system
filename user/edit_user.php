@@ -3,7 +3,7 @@
 include("../authentication/start_session.php");
 
 if ($_SESSION['login'] == true) {
-    if ($_SESSION['userType'] == "admin" or $_GET['userId'] == $_SESSION['userId']) {
+    if ($_SESSION['userType'] == "manager" or $_GET['userId'] == $_SESSION['userId']) {
         include('../db_connect.php');
 
         $query = "SELECT * FROM users WHERE user_id='$_SESSION[userId]'";
@@ -122,6 +122,8 @@ if ($_SESSION['login'] == true) {
     } else {
         header('Location: edit_user_form.php?userId=' . $_SESSION['userId']);
     }
+
+    mysqli_close($conn);
 } else {
     header('Location: login_form.php');
 }

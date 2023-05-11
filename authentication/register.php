@@ -5,7 +5,7 @@ include("start_session.php");
 include("../db_connect.php");
 
 // initialise variables
-$email = $username = $password = $dob = $profilePic = "";
+$email = $name = $password = $dob = $profilePic = $userType = "";
 $emailErr = $usernameErr = $passwordErr = $dobErr = $picErr = "";
 
 function test_input($input)
@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if (empty($_POST["username"])) {
+    if (empty($_POST["name"])) {
         $usernameErr = "Full name is required!";
     } else {
-        $username = test_input($_POST["username"]);
+        $name = test_input($_POST["name"]);
     }
 
     if (empty($_POST["password"])) {
@@ -43,6 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dobErr = "Date of birth is required!";
     } else {
         $dob = test_input($_POST["dob"]);
+    }
+
+    if (empty($_POST["userType"])) {
+        $userType = "user";
+    } else {
+        $userType = $_POST["userType"];
     }
 
     if ($passwordErr == "" or $emailErr == "" or $usernameErr == "" or $dobErr == "") {
@@ -126,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dob = date('Y-m-d', strtotime($dob));
 
         $query = "INSERT INTO users (user_id, user_name, email, user_password, user_type, photo_file_path, birth_date, is_active)
-        VALUES ($user_id,  '$username', '$email', '$password', 'user', '$profilePic', '$dob', 0)";
+        VALUES ($user_id,  '$name', '$email', '$password', 'user', '$profilePic', '$dob', 0)";
 
 
         $result = mysqli_query($conn, $query);
@@ -142,7 +148,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
         }
 
-        header('Location: login_form.php');
+        if ($_SESSION['login'] == true) {
+            header('Location: users_list.php');
+        } else {
+            header('Location: login_form.php');
+        }
     }
 }
+
+mysqli_close($conn);
 ?>

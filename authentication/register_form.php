@@ -12,7 +12,7 @@ include('../includes/header.php');
                 <label for="email">E-mail</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="username" type="text" name="username" placeholder="Username" value="<?php echo $username ?>" required autofocus>
+                <input class="form-control" id="username" type="text" name="name" placeholder="Username" value="<?php echo $name ?>" required autofocus>
                 <label for="username">Full name</label>
             </div>
             <div class="form-floating mb-3">
