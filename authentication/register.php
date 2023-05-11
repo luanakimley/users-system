@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
         }
 
-        if ($_SESSION['login'] == true) {
+        if ($_SESSION['login'] == true and $_SESSION['userType'] == "manager") {
             header('Location: users_list.php');
         } else {
             header('Location: login_form.php');

@@ -40,13 +40,14 @@ if ($_SESSION['login'] == true) {
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-center mt-5 gap-2">
-            <a href="edit_user_form.php?userId=<?php echo $userId ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i>&ensp;Edit profile</a>
+            <a href="edit_user_form.php?userId=<?php echo $userId ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i>&ensp;Edit profile</a>
             <?php if ($_SESSION['userType'] == 'manager') { ?>
                 <a href="users_list.php" class="btn btn-primary">Back to User list</a>
             <?php } else { ?>
                 <form action="../authentication/logout.php" method="post">
-                    <input class="btn btn-primary" type="submit" value="Sign Out">
+                    <input class="btn btn-primary" type="submit" value="Sign out">
                 </form> <?php } ?>
+            <a href="delete_user.php?user_id=<?php echo $userId ?>" class="btn btn-danger"><i class="bi bi-trash"></i>&ensp;Delete account</a>
         </div>
     </main>
 <?php
