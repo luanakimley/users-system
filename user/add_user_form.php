@@ -21,7 +21,7 @@ include('../includes/header.php');
                 <label for="password">Password</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" id="dob" type="date" name="dob" placeholder="Date of Birth" value="<?php echo $dob ?>" required autofocus>
+                <input class="form-control" id="dob" type="date" name="dob" placeholder="Date of Birth" value="<?php echo $dob ?>" required autofocus  max="<?= date('Y-m-d'); ?>">
                 <label for="dob">Date of Birth</label>
             </div>
             <div class="form-floating mb-3">

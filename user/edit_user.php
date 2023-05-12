@@ -3,10 +3,10 @@
 include("../authentication/start_session.php");
 
 if ($_SESSION['login'] == true) {
-    if ($_SESSION['userType'] == "manager" or $_GET['userId'] == $_SESSION['userId']) {
+    if ($_SESSION['userType'] == "manager" or $_GET['user_id'] == $_SESSION['userId']) {
         include('../db_connect.php');
 
-        $query = "SELECT * FROM users WHERE user_id='$_SESSION[userId]'";
+        $query = "SELECT * FROM users WHERE user_id='$_GET[user_id]'";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
 
@@ -109,10 +109,10 @@ if ($_SESSION['login'] == true) {
                     ?>
                 </div>
 <?php } else {
-                $query = "UPDATE users SET user_name = '$name', email = '$email', birth_date='$dob', photo_file_path='$profilePic' WHERE user_id = '$_SESSION[userId]'";
+                $query = "UPDATE users SET user_name = '$name', email = '$email', birth_date='$dob', photo_file_path='$profilePic' WHERE user_id = '$_GET[user_id]'";
                 $result = mysqli_query($conn, $query);
 
-                header('Location: user_profile.php');
+                header('Location: user_profile.php?user_id=' . $_GET['user_id']);
 
                 if (!$result) {
                     echo mysqli_error($conn);
@@ -120,7 +120,7 @@ if ($_SESSION['login'] == true) {
             }
         }
     } else {
-        header('Location: edit_user_form.php?userId=' . $_SESSION['userId']);
+        header('Location: edit_user_form.php?user_id=' . $_GET['user_id']);
     }
 
     mysqli_close($conn);

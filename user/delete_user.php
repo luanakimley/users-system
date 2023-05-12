@@ -24,6 +24,6 @@ mysqli_close($conn);
 
 if ($_SESSION['userType'] != "manager") {
     header('Location: ../authentication/logout.php');
+} else {
+    header("location: users_list.php");
 }
-
-header("location: users_list.php");
