@@ -120,10 +120,10 @@ if ($_SESSION['login'] == true) {
             }
         }
     } else {
-        header('Location: edit_user_form.php?user_id=' . $_GET['user_id']);
+        header('Location: edit_user_form.php?user_id=' . $_SESSION['userId']);
     }
 
     mysqli_close($conn);
 } else {
-    header('Location: login_form.php');
+    header('Location: ../authentication/login_form.php');
 }

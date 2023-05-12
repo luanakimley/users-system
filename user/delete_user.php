@@ -1,29 +1,35 @@
 <?php
 include('../authentication/start_session.php');
 
-if ($_SESSION['userType'] != "manager") {
-    header('Location: ../authentication/login_form.php');
-}
+if ($_SESSION['login'] == true) {
 
-include("../db_connect.php");
+    if ($_SESSION['userType'] != "manager" and $_SESSION['userId'] != $_GET['user_id']) {
+        header('Location: ../user/user_profile.php?user_id=' . $_SESSION['userId']);
+    } else {
 
-$query = "SELECT photo_file_path FROM users WHERE user_id='{$_SESSION['userId']}'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
-$profilePic = $row['photo_file_path'];
+        include("../db_connect.php");
 
-if ($profilePic != "") {
-    $upload_dir = '../image_uploads/'; // upload directory
-    unlink($upload_dir . $profilePic);
-}
+        $query = "SELECT photo_file_path FROM users WHERE user_id='{$_SESSION['userId']}'";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        $profilePic = $row['photo_file_path'];
 
-$query = "DELETE FROM users WHERE user_id = $_GET[user_id]";
-mysqli_query($conn, $query);
+        if ($profilePic != "") {
+            $upload_dir = '../image_uploads/'; // upload directory
+            unlink($upload_dir . $profilePic);
+        }
 
-mysqli_close($conn);
+        $query = "DELETE FROM users WHERE user_id = $_GET[user_id]";
+        mysqli_query($conn, $query);
 
-if ($_SESSION['userType'] != "manager") {
-    header('Location: ../authentication/logout.php');
+        mysqli_close($conn);
+
+        if ($_SESSION['userType'] != "manager") {
+            header('Location: ../authentication/logout.php');
+        } else {
+            header("Location: users_list.php");
+        }
+    }
 } else {
-    header("location: users_list.php");
+    header('Location: ../authentication/login_form.php');
 }
