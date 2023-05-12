@@ -55,7 +55,9 @@ if ($_SESSION['login'] == true) {
                 <form action="../authentication/logout.php" method="post">
                     <input class="btn btn-primary" type="submit" value="Sign out">
                 </form> <?php } ?>
-            <a href="delete_user.php?user_id=<?php echo $userId ?>" class="btn btn-danger"><i class="bi bi-trash"></i>&ensp;Delete account</a>
+                <?php if($row['user_type'] != "manager") { ?>
+                    <a href="delete_user.php?user_id=<?php echo $userId?>" class="btn btn-danger"><i class="bi bi-trash"></i>&ensp;Delete account</a>
+                <?php } ?>
         </div>
     </main>
 <?php

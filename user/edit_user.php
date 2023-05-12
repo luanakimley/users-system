@@ -125,5 +125,5 @@ if ($_SESSION['login'] == true) {
 
     mysqli_close($conn);
 } else {
-    header('Location: login_form.php');
+    header('Location: ../authentication/login_form.php');
 }

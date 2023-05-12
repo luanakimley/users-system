@@ -140,7 +140,7 @@ if ($_SESSION['login'] == true) {
         <div class="form-group">
           <div class="input-group">
             <select name="operation" id="operation" class="form-control" style="width: 100px;">
-              <option value="">Choose an order</option>
+              <option value="">Sort by...</option>
               <option value="ascending-name">Name A-Z</option>
               <option value="descending-name">Name Z-A</option>
               <option value="ascending-email">Email A-Z</option>
@@ -149,7 +149,7 @@ if ($_SESSION['login'] == true) {
               <option value="descending-birthday">Birthdate youngest to oldest</option>
             </select>
             <div class="input-group-append">
-              <input type="submit" name="submit-order" value="Order" class="btn btn-outline-success my-2 my-sm-0">
+              <input type="submit" name="submit-order" value="Sort" class="btn btn-outline-success my-2 my-sm-0">
             </div>
           </div>
         </div>
@@ -210,16 +210,23 @@ if ($_SESSION['login'] == true) {
                   <td><?php echo $row["user_type"]; ?></td>
 
                   <td class="table-column">
-                    <?php if ($row["is_active"] == 1) { ?>
-                      <a href="activate_user.php?user_id=<?php echo $row["user_id"]; ?>&is_active=0" class="btn btn-danger btn-sm table-button">DISABLE</a>
-                    <?php } else { ?>
-                      <a href="activate_user.php?user_id=<?php echo $row["user_id"]; ?>&is_active=1" class="btn btn-success btn-sm table-button">ENABLE</a>
-                    <?php } ?>
+                    <?php 
+                    if ($row["user_type"] != "manager") {
+                      if ($row["is_active"] == 1) { ?>
+                        <a href="activate_user.php?user_id=<?php echo $row["user_id"]; ?>&is_active=0" class="btn btn-danger btn-sm table-button">DISABLE</a>
+                      <?php } else { ?>
+                        <a href="activate_user.php?user_id=<?php echo $row["user_id"]; ?>&is_active=1" class="btn btn-success btn-sm table-button">ENABLE</a>
+                        <?php } 
+                    }?>
                   </td>
 
                   <td class="table-column"><a href="user_profile.php?user_id=<?php echo $row["user_id"]; ?>" class="btn btn-primary btn-sm table-button">VIEW</a></td>
                   <td class="table-column"><a href="edit_user_form.php?user_id=<?php echo $row["user_id"]; ?>" class="btn btn-primary btn-success btn-sm table-button">EDIT</a></td>
-                  <td class="table-column"><a href="delete_user.php?user_id=<?php echo $row["user_id"]; ?>" class="btn btn-danger btn-sm table-button">DELETE</a></td>
+                  <td class="table-column">
+                    <?php if ($row["user_type"] != "manager") { ?>
+                       <a href="delete_user.php?user_id=<?php echo $row["user_id"] ?>" class="btn btn-danger btn-sm table-button">DELETE</a>
+                    <?php } ?>
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>

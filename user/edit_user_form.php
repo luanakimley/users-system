@@ -29,8 +29,12 @@ include('../includes/header.php');
                 <div class="image-container">
                     <img src="../image_uploads/<?php echo $profilePic ?>">
                 </div>
+            <?php } 
+            if ($_SESSION['userId'] == $_GET['user_id']) { ?>
+            <a href=<?php echo "edit_user_password_form.php?user_id=" . $_GET['user_id'] ?> class="btn btn-primary w-100 mt-2">Edit Password</a>
             <?php } ?>
             <button type="submit" class="btn btn-primary w-100 mt-2">Save</button>
+            </form>
     </div>
 
     <?php
